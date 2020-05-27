@@ -572,25 +572,6 @@ define Device/xiaomi_mir3g-v2
 endef
 TARGET_DEVICES += xiaomi_mir3g-v2
 
-define Device/xiaomi_mir3p
-  MTK_SOC := mt7621
-  BLOCKSIZE := 128k
-  PAGESIZE := 2048
-  KERNEL_SIZE:= 4096k
-  UBINIZE_OPTS := -E 5
-  IMAGE_SIZE := 255488k
-  DEVICE_VENDOR := Xiaomi
-  DEVICE_MODEL := Mi Router 3 Pro
-  IMAGES += factory.bin
-  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
-  IMAGE/factory.bin := append-kernel | pad-to $$(KERNEL_SIZE) | append-ubi | check-size $$$$(IMAGE_SIZE)
-  DEVICE_PACKAGES := \
-	kmod-ata-core kmod-ata-ahci kmod-mt76x2 kmod-sdhci-mt7620 kmod-usb3 \
-	kmod-usb-ledtrig-usbport wpad-basic
-  SUPPORTED_DEVICES += witi
-endef
-TARGET_DEVICES += xiaomi_mir3g-v2
-
 define Device/mqmaker_witi-512m
   DTS := WITI-512M
   IMAGE_SIZE := $(ralink_default_fw_size_16M)
